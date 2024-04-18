@@ -2,13 +2,17 @@ import os
 import json
 import discord
 import requests
+import pytz  # Import pytz library
 from datetime import datetime
 
 # GitHub repository information
-GITHUB_USERNAME = 'yourgithubusername'
-REPOSITORY_NAME = 'yourreponame'
+GITHUB_USERNAME = 'Tiiker1'
+REPOSITORY_NAME = 'taigrfull'
 REPOSITORY_URL = f'https://github.com/{GITHUB_USERNAME}/{REPOSITORY_NAME}'
 COMMIT_DATA_DIR = 'commit_data'
+
+# Define Helsinki timezone
+helsinki_tz = pytz.timezone('Europe/Helsinki')
 
 # Function to fetch recent commits from GitHub
 def fetch_recent_commits():
@@ -40,8 +44,10 @@ def save_commit_data(commits):
 # Function to create an embed message for a commit
 def create_commit_embed(commit):
     try:
-        commit_date = datetime.strptime(commit["commit"]["author"]["date"], "%Y-%m-%dT%H:%M:%SZ").strftime(
-            "%b %d, %Y %I:%M %p UTC")
+        commit_date = datetime.strptime(commit["commit"]["author"]["date"], "%Y-%m-%dT%H:%M:%SZ")
+        commit_date = commit_date.replace(tzinfo=pytz.utc).astimezone(helsinki_tz)  # Convert to Helsinki timezone
+        commit_date_str = commit_date.strftime("%b %d, %Y %I:%M %p %Z")
+
         github_username = commit["commit"]["author"].get("username", commit["commit"]["author"]["name"])
 
         embed = discord.Embed(
@@ -51,7 +57,7 @@ def create_commit_embed(commit):
         )
         embed.set_author(name=commit["commit"]["author"]["name"], icon_url=commit["author"]["avatar_url"])
         embed.set_thumbnail(url="https://github.githubassets.com/images/modules/logos_page/Octocat.png")
-        embed.set_footer(text=f"{github_username} | {commit_date}")
+        embed.set_footer(text=f"{github_username} | {commit_date_str}")
         embed.add_field(name="\u200b", value=f"[View Commit on GitHub]({REPOSITORY_URL}/commit/{commit['sha']})",
                         inline=False)
 
@@ -82,7 +88,7 @@ async def check_commits_and_send_message(bot):
         for commit in unsent_commits:
             embed = create_commit_embed(commit)
             if embed:
-                channel_id = 3242342342342324  # Replace this with the actual channel ID
+                channel_id = 1229431918647447622  # Replace this with the actual channel ID
                 channel = bot.get_channel(channel_id)
                 await channel.send(embed=embed)
 
