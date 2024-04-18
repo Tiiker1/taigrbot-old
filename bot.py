@@ -1,52 +1,61 @@
 import discord
-import requests
 import os
 import asyncio
+from discord.ext import commands
 from dotenv import load_dotenv
+from utils.github import check_commits_and_send_message  # Updated import statement
 
 load_dotenv()
 
 # Retrieve Discord bot token from environment variables
 BOT_TOKEN = os.getenv('DISCORD_BOT_TOKEN')
 
-# GitHub repository information
-GITHUB_USERNAME = '-'
-REPOSITORY_NAME = '-'
+intents = discord.Intents.all()
+bot = commands.Bot(command_prefix='?', intents=intents)
 
-# Define gateway intents
-intents = discord.Intents.default()
-intents.presences = True
-intents.members = True
+# Load command files
+import importlib
 
-# Discord bot client
-bot = discord.Client(intents=intents)
+commands = {}
 
-# Function to fetch recent commits from GitHub
-def fetch_recent_commits():
-    response = requests.get(f'https://api.github.com/repos/{GITHUB_USERNAME}/{REPOSITORY_NAME}/commits')
-    return response.json()
+for file in os.listdir('./commands'):
+    if file.endswith('.py'):
+        module = importlib.import_module(f'commands.{os.path.splitext(file)[0]}')
+        commands[module.execute.__command_name__] = module.execute
 
-# Function to check for new commits and send message to Discord
-async def check_commits_and_send_message():
-    commits = fetch_recent_commits()
+@bot.event
+async def on_message(message):
+    # Ignore messages from bots
+    if message.author.bot:
+        return
 
-    # Get the latest commit
-    latest_commit_sha = commits[0]['sha']
+    # Check for command
+    if message.content.startswith('?'):
+        args = message.content[1:].strip().split(' ')
+        command_name = args.pop(0).lower()
 
-    # Check if the latest commit is different from the previous one
-    if latest_commit_sha != check_commits_and_send_message.latest_commit:
-        check_commits_and_send_message.latest_commit = latest_commit_sha
+        # Check if the command exists
+        if command_name not in commands:
+            await message.channel.send(f"{message.author.mention}, Tuntematon komento '{command_name}'. tee komento ?help nähdäksesi käytössä olevat komennot.")
+            return
 
-        # Format commit information into a Discord message
-        message = f'New commit in {REPOSITORY_NAME}: {commits[0]["commit"]["message"]}'
+        # Execute the command
+        command = commands[command_name]
+        await command(message, args, bot, commands)
 
-        # Post the message to the specified Discord channel
-        channel_id = -  # Replace this with the actual channel ID
-        channel = bot.get_channel(channel_id)
-        await channel.send(message)
+        # Delete the user's command message only for configured commands
+        if command_name in ['clear', 'wiki', 'ping', 'troll', 'ehdotus']:  # Add other configured commands as needed
+            try:
+                await message.delete()
+            except discord.errors.NotFound:
+                pass  # Message already deleted or not found
 
-# Initialize the latest commit variable
-check_commits_and_send_message.latest_commit = ''
+# Load events from the "events" folder
+for filename in os.listdir('./events'):
+    if filename.endswith('.py') and not filename.startswith('__'):
+        event_module = __import__(f'events.{filename[:-3]}', fromlist=[''])
+        if hasattr(event_module, 'setup'):
+            event_module.setup(bot)
 
 # Event: Triggered when the bot is ready
 @bot.event
@@ -55,8 +64,8 @@ async def on_ready():
 
     # Run the task to check for new commits periodically
     while True:
-        await check_commits_and_send_message()
-        await asyncio.sleep(600)  # Check every 10 minutes
+        await check_commits_and_send_message(bot)
+        await asyncio.sleep(10)  # Check every 10 minutes
 
 # Run the bot
 bot.run(BOT_TOKEN)
