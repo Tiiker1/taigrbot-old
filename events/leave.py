@@ -1,13 +1,29 @@
-async def on_member_remove(member, bot_message_channel_id):
-    # Retrieve the bot message channel for the current server
-    bot_message_channel = member.guild.get_channel(bot_message_channel_id)
-    
-    # Check if the bot message channel exists
-    if bot_message_channel is not None:
-        # Send a goodbye message to the bot message channel mentioning the removed member
-        await bot_message_channel.send(f'Goodbye {member.mention}!')
+import discord
+from config import guild_configs
 
-def setup(bot, bot_message_channel_id):
-    # Add the on_member_remove event listener to the bot
-    # This event listener will be triggered when a member leaves the server
-    bot.add_listener(on_member_remove)
+async def on_member_remove(member):
+    # This function will be called when a member leaves the server
+
+    # Check if the member left a configured guild
+    guild_id = member.guild.id
+    if guild_id in guild_configs:
+        guild_config = guild_configs[guild_id]
+        leave_channel_id = guild_config.get('leave_channel_id')
+        goodbye_message = guild_config.get('goodbye_message', '{member.display_name} has left the server. Goodbye!')
+
+        # Check if leave_channel_id is configured for the guild
+        if leave_channel_id:
+            # Fetch the channel
+            leave_channel = member.guild.get_channel(leave_channel_id)
+
+            if leave_channel:
+                await leave_channel.send(goodbye_message.format(member=member))
+            else:
+                print(f"Error: Log channel with ID {leave_channel_id} not found.")
+        else:
+            print(f"Error: Leave channel ID not configured for guild {guild_id}.")
+    else:
+        print(f"Error: Guild configuration not found for guild ID {guild_id}.")
+
+def setup(bot):
+    bot.add_listener(on_member_remove, 'on_member_remove')
