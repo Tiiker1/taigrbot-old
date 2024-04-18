@@ -1,11 +1,14 @@
+import os
+import json
 import discord
 import requests
 from datetime import datetime
 
 # GitHub repository information
-GITHUB_USERNAME = 'your github user name here'
-REPOSITORY_NAME = 'your github repo name here'
+GITHUB_USERNAME = 'yourgithubusername'
+REPOSITORY_NAME = 'yourreponame'
 REPOSITORY_URL = f'https://github.com/{GITHUB_USERNAME}/{REPOSITORY_NAME}'
+COMMIT_DATA_DIR = 'commit_data'
 
 # Function to fetch recent commits from GitHub
 def fetch_recent_commits():
@@ -16,6 +19,23 @@ def fetch_recent_commits():
     except Exception as e:
         print(f"Failed to fetch commits: {e}")
         return []
+
+# Function to load commit data from a JSON file
+def load_commit_data():
+    try:
+        with open(os.path.join(COMMIT_DATA_DIR, 'commits.json'), 'r') as file:
+            return json.load(file)
+    except FileNotFoundError:
+        return []
+
+# Function to save commit data to a JSON file
+def save_commit_data(commits):
+    try:
+        os.makedirs(COMMIT_DATA_DIR, exist_ok=True)
+        with open(os.path.join(COMMIT_DATA_DIR, 'commits.json'), 'w') as file:
+            json.dump(commits, file, indent=4)
+    except Exception as e:
+        print(f"Failed to save commit data: {e}")
 
 # Function to create an embed message for a commit
 def create_commit_embed(commit):
@@ -43,32 +63,31 @@ def create_commit_embed(commit):
 # Function to check for new commits and send message to Discord
 async def check_commits_and_send_message(bot):
     try:
+        # Fetch recent commits from GitHub
         commits = fetch_recent_commits()
-
-        # Check if the commits list is empty
         if not commits:
             print("No commits found.")
             return
 
-        # Get the latest commit
-        latest_commit_sha = commits[0]['sha']
+        # Reverse the order of commits to process them from oldest to newest
+        commits.reverse()
 
-        # Check if the latest commit is different from the previous one
-        if latest_commit_sha != check_commits_and_send_message.latest_commit:
-            check_commits_and_send_message.latest_commit = latest_commit_sha
+        # Load previously sent commits
+        sent_commits = load_commit_data()
 
-            # Get the latest commit details
-            latest_commit = commits[0]
+        # Filter out already sent commits
+        unsent_commits = [commit for commit in commits if commit['sha'] not in sent_commits]
 
-            # Create an embed message for the latest commit
-            embed = create_commit_embed(latest_commit)
+        # Send messages for unsent commits
+        for commit in unsent_commits:
+            embed = create_commit_embed(commit)
+            if embed:
+                channel_id = 3242342342342324  # Replace this with the actual channel ID
+                channel = bot.get_channel(channel_id)
+                await channel.send(embed=embed)
 
-            # Post the embed message to the specified Discord channel
-            channel_id = putyourchannelid here where bot sends messages  # Replace this with the actual channel ID
-            channel = bot.get_channel(channel_id)
-            await channel.send(embed=embed)
+        # Update the list of sent commits
+        all_commits = sent_commits + [commit['sha'] for commit in unsent_commits]
+        save_commit_data(all_commits)
     except Exception as e:
         print(f"Failed to check commits and send message: {e}")
-
-# Initialize the latest commit variable
-check_commits_and_send_message.latest_commit = ''
