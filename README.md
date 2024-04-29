@@ -9,8 +9,12 @@ Github script to own scripts folder<br>
 new features<br>
 <br>
 List of things that has been done after intial commit:
-- clear command (soon after intial commit)
-- context menu commands (report bugs and report message to moderators) (29.04.2024)
+<h3>soon after intial commit</h3>
+- clear command
+<h3>29.04.2024</h3>
+- context menu commands (report bugs and report message to moderators) 
+
+
 <br> <br>
 <h2>LICENSE</h2>
 Software provided does not come with any kind of warranty and im not resposible any possible damage it has caused or could cause.<br>
