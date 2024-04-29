@@ -8,6 +8,8 @@ from datetime import datetime
 import pytz
 import json
 
+from commands import bug_contextmenu
+from commands import report_contextmenu
 from commands import hello_commands
 from commands import add_commands
 from commands import text_commands
@@ -29,6 +31,8 @@ intents = discord.Intents.default()
 client = MyClient(intents=intents)
 
 # Call setup functions
+report_contextmenu.setup(client)
+bug_contextmenu.setup(client)
 hello_commands.setup(client)
 add_commands.setup(client)
 text_commands.setup(client)
