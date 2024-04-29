@@ -10,9 +10,6 @@ import json
 
 from commands import bug_contextmenu
 from commands import report_contextmenu
-from commands import hello_commands
-from commands import add_commands
-from commands import text_commands
 from commands.clear import setup as setup_clear
 
 MY_GUILD = discord.Object(id=guildidhere)  # replace with your guild id
@@ -33,9 +30,6 @@ client = MyClient(intents=intents)
 # Call setup functions
 report_contextmenu.setup(client)
 bug_contextmenu.setup(client)
-hello_commands.setup(client)
-add_commands.setup(client)
-text_commands.setup(client)
 setup_clear(client)
 
 # Define your GitHub repository information
