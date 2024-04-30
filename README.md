@@ -42,6 +42,7 @@ List of things that has been done after intial commit:
 - context menu commands (report bugs and report message to moderators)
 <h4>30.04.2024</h4>
 - better readme file
+- poll command
 
 
 ## Built With
