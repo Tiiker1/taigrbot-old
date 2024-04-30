@@ -35,8 +35,14 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-( - means added and x means removed )<br>
+Current features of this bot:<br>
+- clear command<br>
+- poll command<br>
+- reporting bug and message context menu commands<br>
+- github commit output to specified channel<br>
+
 List of things that has been done after intial commit:
+( - means added and x means removed )<br>
 <h4>soon after intial commit</h4>
 - clear command
 <h4>29.04.2024</h4>
