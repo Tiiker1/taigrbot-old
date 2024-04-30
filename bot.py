@@ -11,6 +11,7 @@ import json
 from commands import bug_contextmenu
 from commands import report_contextmenu
 from commands.clear import setup as setup_clear
+from commands.poll import setup as setup_poll
 
 MY_GUILD = discord.Object(id=guildidhere)  # replace with your guild id
 
@@ -31,6 +32,7 @@ client = MyClient(intents=intents)
 report_contextmenu.setup(client)
 bug_contextmenu.setup(client)
 setup_clear(client)
+setup_poll(client)
 
 # Define your GitHub repository information
 GITHUB_USERNAME = 'github username here'
