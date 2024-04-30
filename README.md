@@ -1,23 +1,172 @@
-# taigrfull
-full dev version of taigrbot which has all features.
-<br>
-to do:
-<br>
-Event files to own folder<br>
-fix clear commmand to show amount messages it actually deleted not what you told it to delete<br>
-Github script to own scripts folder<br>
-new features<br>
-<br>
+<a name="readme-top"></a>
+
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <h3 align="center">taigrfull</h3>
+
+  <p align="center">
+    full dev version of taigrbot which has all features.
+  </p>
+</div>
+
+
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
+
+
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+[![Product Name Screen Shot][product-screenshot]](https://example.com)
+
 List of things that has been done after intial commit:
 <h3>soon after intial commit</h3>
 - clear command
 <h3>29.04.2024</h3>
-- context menu commands (report bugs and report message to moderators) 
+- context menu commands (report bugs and report message to moderators)´
+<h3>30.04.2024</h3>
+- better readme file
 
 
-<br> <br>
-<h2>LICENSE</h2>
+### Built With
+
+Python libraries/modules used in this project
+
+* discord.py
+* discord.ext
+* typing
+* requests
+* os
+* datetime
+* pytz
+* json
+
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+Follow these instructions if you want to run this bot
+
+### Prerequisites
+
+These are the required python libraries to install.
+
+* pip
+  ```sh
+  pip install discord.py
+  ```
+  ```sh
+  pip install discord-typings
+  ```
+  ```sh
+  pip install pytz
+  ```
+  ```sh
+  pip install requests
+  ```
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/Tiiker1/taigrfull.git
+   ```
+2. Install pip packages
+   ```sh
+   pip install package name (all from the list above)
+   ```
+3. Enter your discord bot token in `bot.py`
+   ```
+   client.run("enter your token here")
+   ```
+4. Run the bot in terminal with this command
+   ```sh
+   python bot.py
+   ```
+
+
+<!-- USAGE EXAMPLES -->
+## Usage
+
+to start this bot open command promopt in same folder as bot is and do following command:
+   ```sh
+   python bot.py
+   ```
+
+<!-- ROADMAP -->
+## Roadmap
+
+- [ ] Event files to own folder
+- [ ] fix clear commmand to show amount messages it actually deleted not what you told it to delete
+- [ ] Github script to own scripts folder
+- [ ] Add more feature
+
+
+<!-- LICENSE -->
+## License
+
 Software provided does not come with any kind of warranty and im not resposible any possible damage it has caused or could cause.<br>
 You use this software completly under your own responsibility.<br>
 You are not allowed to freely use this provided software.<br>
 For now you can use it in your projects long as you keep it open source or fork it directly on github.
+
+
+
+<!-- CONTACT -->
+## Contact
+
+Your Name - [@your_twitter](https://twitter.com/Tiiker1) - tkr1.cloud@gmail.com
+
+Project Link: [https://github.com/Tiiker1/taigrfull](https://github.com/Tiiker1/taigrfull)
+
+
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
+
+I found these recoures usefull when i started this project
+
+* [Choose an Open Source License](https://choosealicense.com)
+* [Discord.py docs](https://discordpy.readthedocs.io/en/stable/)
+
+
+<!-- MARKDOWN LINKS & IMAGES -->
+[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
+[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
+[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
+[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
+[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
+[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
+[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
+[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
+[product-screenshot]: images/screenshot.png
