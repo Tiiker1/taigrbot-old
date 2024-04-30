@@ -110,7 +110,7 @@ to start this bot open command promopt in same folder as bot is and do following
    ```
 
 <!-- ROADMAP -->
-## Roadmap
+## Things to do which are not currently on this bot
 
 - [ ] Event files to own folder
 - [ ] fix clear commmand to show amount messages it actually deleted not what you told it to delete
