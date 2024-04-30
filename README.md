@@ -56,6 +56,7 @@ Python libraries/modules used in this project
 * datetime
 * pytz
 * json
+* yarl
 
 
 <!-- GETTING STARTED -->
@@ -79,6 +80,9 @@ These are the required python libraries to install.
   ```
   ```sh
   pip install requests
+  ```
+  ```sh
+  pip install yarl
   ```
 
 ### Installation
