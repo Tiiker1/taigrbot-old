@@ -9,7 +9,6 @@
 <br />
 <div align="center">
   <h3 align="center">taigrfull</h3>
-
   <p align="center">
     full dev version of taigrbot which has all features.
   </p>
@@ -45,9 +44,6 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
 List of things that has been done after intial commit:
 <h3>soon after intial commit</h3>
 - clear command
