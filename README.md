@@ -68,7 +68,6 @@ Follow these instructions if you want to run this bot
 
 These are the required python libraries to install.
 
-* pip
   ```sh
   pip install discord.py
   ```
