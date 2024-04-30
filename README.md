@@ -1,3 +1,11 @@
+<style>
+h1 {
+color:green;
+}
+
+  
+</style>
+
 # taigrfull
 full dev version of taigrbot which has all features.
 <br>
