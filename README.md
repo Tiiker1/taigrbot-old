@@ -131,7 +131,7 @@ For now you can use it in your projects long as you keep it open source or fork 
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/Tiiker1) - tkr1.cloud@gmail.com
+Email -  tkr1.cloud@gmail.com
 
 Project Link: [https://github.com/Tiiker1/taigrfull](https://github.com/Tiiker1/taigrfull)
 
