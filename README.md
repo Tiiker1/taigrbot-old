@@ -45,11 +45,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 List of things that has been done after intial commit:
-<h3>soon after intial commit</h3>
+<h4>soon after intial commit</h4>
 - clear command
-<h3>29.04.2024</h3>
+<h4>29.04.2024</h4>
 - context menu commands (report bugs and report message to moderators)´
-<h3>30.04.2024</h3>
+<h4>30.04.2024</h4>
 - better readme file
 
 
