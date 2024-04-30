@@ -44,7 +44,7 @@ List of things that has been done after intial commit:
 - better readme file
 
 
-### Built With
+## Built With
 
 Python libraries/modules used in this project
 
