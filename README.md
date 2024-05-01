@@ -43,15 +43,12 @@ Current features of this bot:<br>
 
 ## List of things that has been done after intial commit:
 ( - means added and x means removed )<br>
-
 <h4>30.04.2024</h4>
 - better readme file<br>
 x poll command<br>
 - Enhanced poll command<br>
-
 <h4>29.04.2024</h4>
 - context menu commands (report bugs and report message to moderators)
-
 <h4>soon after intial commit</h4>
 - clear command
 
