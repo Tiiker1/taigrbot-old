@@ -150,7 +150,7 @@ Project Link: [https://github.com/Tiiker1/taigrfull](https://github.com/Tiiker1/
 
 
 <!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
+## Resources
 
 I found these recoures usefull when i started this project
 
