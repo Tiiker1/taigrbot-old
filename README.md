@@ -11,7 +11,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#about-the-project">Features</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
@@ -34,14 +34,14 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## Features
 Current features of this bot:<br>
 - clear command<br>
 - poll command<br>
 - reporting bug and message context menu commands<br>
 - github commit output to specified channel<br>
 
-List of things that has been done after intial commit:
+## List of things that has been done after intial commit:
 ( - means added and x means removed )<br>
 <h4>soon after intial commit</h4>
 - clear command
