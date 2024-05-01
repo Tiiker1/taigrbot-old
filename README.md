@@ -11,7 +11,7 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#about-the-project">Features</a>
+      <a href="#Features">Features</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
       </ul>
@@ -41,7 +41,7 @@ Current features of this bot:<br>
 - reporting bug and message context menu commands<br>
 - github commit output to specified channel<br>
 
-## List of things that has been done after intial commit:
+## Changelog:
 ( - means added and x means removed )<br>
 <h4>30.04.2024</h4>
 - better readme file<br>
@@ -121,12 +121,14 @@ to start this bot open command promopt in same folder as bot is and do following
    ```
 
 <!-- ROADMAP -->
-## Things to do which are not currently on this bot
+## Things to do which was not originally on this bot
 
 - [ ] Event files to own folder
 - [ ] fix clear commmand to show amount messages it actually deleted not what you told it to delete
 - [ ] Github script to own scripts folder
 - [ ] Add more feature
+- [x] Changelog 01.05.2024
+- [x] Poll command 30.04.2024
 
 
 <!-- LICENSE -->
