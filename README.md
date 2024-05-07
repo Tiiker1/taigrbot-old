@@ -77,24 +77,8 @@ Python libraries/modules used in this project
 Follow these instructions if you want to run this bot
 
 ### Prerequisites
-
-These are the required python libraries to install.
-
-  ```sh
-  pip install discord.py
-  ```
-  ```sh
-  pip install discord-typings
-  ```
-  ```sh
-  pip install pytz
-  ```
-  ```sh
-  pip install requests
-  ```
-  ```sh
-  pip install yarl
-  ```
+These are required to install before getting started:<br>
+Python from: https://www.python.org/downloads/
 
 ### Installation
 
