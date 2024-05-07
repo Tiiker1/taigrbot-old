@@ -45,8 +45,8 @@ Current features of this bot:<br>
 ## Changelog:
 ( - means added and x means removed )<br>
 <h4>06.05.2024</h4>
-- added leave and welcome messages for configured guild and channels
-x removed report bug and message commands from main code since they now exists on commands folder in seperated files.
+- added leave and welcome messages for configured guild and channels<br>
+x removed report bug and message commands from main code since they now exists on commands folder in seperated files.<br>
 <h4>30.04.2024</h4>
 - better readme file<br>
 x removed poll command since its replaced by more advanced poll command<br>
