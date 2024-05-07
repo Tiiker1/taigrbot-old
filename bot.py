@@ -127,61 +127,32 @@ async def check_commits_and_send_message():
     except Exception as e:
         print(f"Failed to check commits and send message: {e}")
 
+# Dictionary to store the channel IDs for each guild
+welcome_leave_channels = {
+    23423424242423424: 2342424234324,  # Guild ID : Channel ID -> remeber to place with actual guild and channel id´s 
+}
+
 @client.event
 async def on_ready():
     print('Bot is ready.')
     await check_commits_and_send_message()
 
-#command which disabled currently but used to clear registered commands.
-#@client.tree.command()
-#async def settings(ctx: discord.Interaction):
-    #await ctx.response.send_message('Settings run')
-    #client.tree.clear_commands(guild=ctx.guild)
-    #await client.tree.sync(guild=ctx.guild)
+@client.event
+async def on_member_join(member):
+    guild_id = member.guild.id
+    if guild_id in welcome_leave_channels:
+        channel_id = welcome_leave_channels[guild_id]
+        channel = client.get_channel(channel_id)
+        if channel:
+            await channel.send(f"Welcome {member.mention} to the server!")
 
-# This context menu command only works on messages
-@client.tree.context_menu(name='Report to Moderators')
-async def report_message(interaction: discord.Interaction, message: discord.Message):
-    # We're sending this response message with ephemeral=True, so only the command executor can see it
-    await interaction.response.send_message(
-        f'Thanks for reporting this message by {message.author.mention} to our moderators.', ephemeral=True
-    )
-
-    # Handle report by sending it into a log channel
-    log_channel = interaction.guild.get_channel(messages reported channelid here)  # replace with your channel id
-
-    embed = discord.Embed(title='Reported Message')
-    if message.content:
-        embed.description = message.content
-
-    embed.set_author(name=message.author.display_name, icon_url=message.author.display_avatar.url)
-    embed.timestamp = message.created_at
-
-    url_view = discord.ui.View()
-    url_view.add_item(discord.ui.Button(label='Go to Message', style=discord.ButtonStyle.url, url=message.jump_url))
-
-    await log_channel.send(embed=embed, view=url_view)
-
-@client.tree.context_menu(name='Report Bug')
-async def report_message(interaction: discord.Interaction, message: discord.Message):
-    # We're sending this response message with ephemeral=True, so only the command executor can see it
-    await interaction.response.send_message(
-        f'Thanks for reporting bug {message.author.mention} to our developers.', ephemeral=True
-    )
-
-    # Handle report by sending it into a log channel
-    log_channel = interaction.guild.get_channel(bug report channelid here)  # replace with your channel id
-
-    embed = discord.Embed(title='Reported Bug')
-    if message.content:
-        embed.description = message.content
-
-    embed.set_author(name=message.author.display_name, icon_url=message.author.display_avatar.url)
-    embed.timestamp = message.created_at
-
-    url_view = discord.ui.View()
-    url_view.add_item(discord.ui.Button(label='Go to Message', style=discord.ButtonStyle.url, url=message.jump_url))
-
-    await log_channel.send(embed=embed, view=url_view)
+@client.event
+async def on_member_remove(member):
+    guild_id = member.guild.id
+    if guild_id in welcome_leave_channels:
+        channel_id = welcome_leave_channels[guild_id]
+        channel = client.get_channel(channel_id)
+        if channel:
+            await channel.send(f"Goodbye {member.mention}!")
 
 client.run("put your bot token here")
