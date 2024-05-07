@@ -88,7 +88,7 @@ Python from: https://www.python.org/downloads/
    ```
 2. Install pip packages
    ```sh
-   pip install package name (all from the list above)
+   pip install -r requirements.txt
    ```
 3. Enter your discord bot token in `bot.py`
    ```
