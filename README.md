@@ -40,6 +40,7 @@ Current features of this bot:<br>
 - poll command<br>
 - reporting bug and message context menu commands<br>
 - github commit output to specified channel<br>
+- welcome and leave messages which need to be configured in main code<br>
 
 ## Changelog:
 ( - means added and x means removed )<br>
