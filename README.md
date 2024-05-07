@@ -125,7 +125,8 @@ to start this bot open command promopt in same folder as bot is and do following
 Software provided does not come with any kind of warranty and im not resposible any possible damage it has caused or could cause.<br>
 You use this software completly under your own responsibility.<br>
 You are not allowed to freely use this provided software.<br>
-For now you can use it in your projects long as you keep it open source or fork it directly on github.
+For now you can use it in your projects long as you keep it open source or fork it directly on github.<br>
+organisations and corporates and official use of this bot is not allowed. (for a fee i´ll give permissions to directly use this bot for those mentioned before.) 
 
 
 
