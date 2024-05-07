@@ -45,9 +45,9 @@ Current features of this bot:<br>
 ## Changelog:
 ( - means added and x means removed )<br>
 <h4>07.05.2024</h4>
-- added mute command
-- added unmute command
-- added help command
+- added mute command<br>
+- added unmute command<br>
+- added help command<br>
 <h4>06.05.2024</h4>
 - added leave and welcome messages for configured guild and channels<br>
 x removed report bug and message commands from main code since they now exists on commands folder in seperated files.<br>
