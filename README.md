@@ -44,6 +44,10 @@ Current features of this bot:<br>
 
 ## Changelog:
 - means added and x means removed<br>
+
+<h4>08.05.2024</h4>
+- added imports and setup call functions for mute, unmute and help commands<br>
+
 <h4>07.05.2024</h4>
 - added mute command<br>
 - added unmute command<br>
@@ -54,11 +58,11 @@ x removed report bug and message commands from main code since they now exists o
 <h4>30.04.2024</h4>
 - better readme file<br>
 x removed poll command since its replaced by more advanced poll command<br>
-- Enhanced poll command<br>
+- added Enhanced poll command<br>
 <h4>29.04.2024</h4>
-- context menu commands (report bugs and report message to moderators)
+- added context menu commands (report bugs and report message to moderators)
 <h4>soon after intial commit</h4>
-- clear command
+- added clear command
 
 ## Built With
 
