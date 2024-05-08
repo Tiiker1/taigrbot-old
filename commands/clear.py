@@ -5,6 +5,11 @@ def setup(client):
     @client.tree.command()
     async def clear(interaction: discord.Interaction, amount: int):
         """Clears the specified number of messages."""
+        # Check if the user has the "Manage Messages" permission
+        if not interaction.user.guild_permissions.manage_messages:
+            await interaction.response.send_message("You don't have permission to use this command.", ephemeral=True)
+            return
+
         # Send an initial response to acknowledge the command
         initial_response = await interaction.response.send_message("Started clearing messages please wait..", ephemeral=False)
 
