@@ -39,6 +39,7 @@ Current features of this bot:<br>
 - clear command<br>
 - poll command<br>
 - mute command<br>
+- unmute command<br>
 - reporting bug and message context menu commands<br>
 - github commit output to specified channel<br>
 - welcome and leave messages which need to be configured in main code<br>
