@@ -43,7 +43,7 @@ Current features of this bot:<br>
 - welcome and leave messages which need to be configured in main code<br>
 
 ## Changelog:
-( - means added and x means removed )<br>
+- means added and x means removed<br>
 <h4>07.05.2024</h4>
 - added mute command<br>
 - added unmute command<br>
