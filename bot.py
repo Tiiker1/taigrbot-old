@@ -10,6 +10,9 @@ import json
 
 from commands import bug_contextmenu
 from commands import report_contextmenu
+from commands import help
+from commands import mute
+from commands import unmute
 from commands.clear import setup as setup_clear
 from commands.poll import setup as setup_poll
 
@@ -31,6 +34,9 @@ client = MyClient(intents=intents)
 # Call setup functions
 report_contextmenu.setup(client)
 bug_contextmenu.setup(client)
+help.setup(client)
+mute.setup(client)
+unmute.setup(client)
 setup_clear(client)
 setup_poll(client)
 
