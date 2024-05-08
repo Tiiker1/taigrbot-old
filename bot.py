@@ -4,8 +4,8 @@ from discord.ext import commands
 from discord import app_commands
 import pytz
 import asyncio
-from github import fetch_recent_commits, load_commit_data, save_commit_data, create_commit_embed
-from github import check_commits_and_send_message
+from scripts.github import fetch_recent_commits, load_commit_data, save_commit_data, create_commit_embed
+from scripts.github import check_commits_and_send_message
 
 from commands import bug_contextmenu
 from commands import report_contextmenu
