@@ -47,6 +47,8 @@ Current features of this bot:<br>
 
 <h4>08.05.2024</h4>
 - added imports and setup call functions for mute, unmute and help commands<br>
+- added seperate github.py script to send messages about github commits automaticly on dev channel<br>
+- removed github script from main file<br>
 
 <h4>07.05.2024</h4>
 - added mute command<br>
@@ -121,7 +123,7 @@ to start this bot open command promopt in same folder as bot is and do following
 
 - [ ] Event files to own folder
 - [ ] fix clear commmand to show amount messages it actually deleted not what you told it to delete
-- [ ] Github script to own scripts folder
+- [x] Github script to own scripts folder 08.05.2024
 - [ ] Add more feature
 - [x] Changelog 01.05.2024
 - [x] Poll command 30.04.2024
