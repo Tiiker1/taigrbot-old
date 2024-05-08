@@ -50,6 +50,7 @@ Current features of this bot:<br>
 <h4>08.05.2024</h4>
 - added imports and setup call functions for mute, unmute and help commands<br>
 - added mute and unmute commands to help command<br>
+- added task to check every 10minutes for new commits
 - added seperate github.py script to scripts folder to send messages about github commits automaticly on dev channel<br>
 - removed github script from main file<br>
 
