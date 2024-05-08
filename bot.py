@@ -67,5 +67,10 @@ async def on_member_remove(member):
         channel = client.get_channel(channel_id)
         if channel:
             await channel.send(f"Goodbye {member.mention}!")
+            
+async def schedule_commit_check(client):
+    while True:
+        await asyncio.sleep(600)  # Sleep for 1 hour (3600 seconds)
+        await check_commits_and_send_message(client)
 
 client.run("put your bot token here")
