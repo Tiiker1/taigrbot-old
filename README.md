@@ -125,7 +125,7 @@ to start this bot open command promopt in same folder as bot is and do following
 
 - [ ] Event files to own folder
 - [ ] fix clear commmand to show amount messages it actually deleted not what you told it to delete
-- [ ] Github script to own scripts folder (08.05.2024 now has seperated file but not yet in foled)
+- [x] Github script to own scripts folder 08.05.2024
 - [ ] Add more feature
 - [x] Changelog 01.05.2024
 - [x] Poll command 30.04.2024
