@@ -2,11 +2,10 @@ from typing import Optional
 import discord
 from discord.ext import commands
 from discord import app_commands
-import requests
-import os
-from datetime import datetime
 import pytz
-import json
+import asyncio
+from github import fetch_recent_commits, load_commit_data, save_commit_data, create_commit_embed
+from github import check_commits_and_send_message
 
 from commands import bug_contextmenu
 from commands import report_contextmenu
