@@ -1,1 +1,8 @@
-
+discord.py
+typing
+requests
+os
+datetime
+pytz
+json
+yarl
