@@ -45,7 +45,6 @@ Current features of this bot:<br>
 - welcome and leave messages which need to be configured in main code<br>
 
 ## Changelog:
-- means added and x means removed<br>
 
 <h4>08.05.2024</h4>
 - added imports and setup call functions for mute, unmute and help commands<br>
@@ -54,18 +53,20 @@ Current features of this bot:<br>
 - added seperate github.py script to scripts folder to send messages about github commits automaticly on dev channel<br>
 - removed github script from main file<br>
 
-
 <h4>07.05.2024</h4>
 - added mute command<br>
 - added unmute command<br>
 - added help command<br>
+
 <h4>06.05.2024</h4>
 - added leave and welcome messages for configured guild and channels<br>
 x removed report bug and message commands from main code since they now exists on commands folder in seperated files.<br>
+
 <h4>30.04.2024</h4>
 - better readme file<br>
-x removed poll command since its replaced by more advanced poll command<br>
+- removed poll command since its replaced by more advanced poll command<br>
 - added Enhanced poll command<br>
+
 <h4>29.04.2024</h4>
 - added context menu commands (report bugs and report message to moderators)
 <h4>soon after intial commit</h4>
