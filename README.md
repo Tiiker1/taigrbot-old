@@ -50,6 +50,7 @@ Current features of this bot:<br>
 - modified imports of moderation commands to them begin able to be in sub folder<br>
 - created moderation folder to commands for better manage of commands<br>
 - relocated moderation commands to moderation subfolder<br>
+- added custom status for bot (not yet commited)
 
 <h4>08.05.2024</h4>
 - added imports and setup call functions for mute, unmute and help commands<br>
