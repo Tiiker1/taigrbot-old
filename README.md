@@ -46,6 +46,11 @@ Current features of this bot:<br>
 
 ## Changelog:
 
+<h4>13.05.2024</h4>
+- modified imports of moderation commands to them begin able to be in sub folder
+- created moderation folder to commands for better manage of commands
+- relocated moderation commands to moderation subfolder
+
 <h4>08.05.2024</h4>
 - added imports and setup call functions for mute, unmute and help commands<br>
 - added mute and unmute commands to help command<br>
