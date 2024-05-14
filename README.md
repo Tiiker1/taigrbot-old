@@ -165,3 +165,5 @@ I found these recoures usefull when i started this project
 
 * [Choose an Open Source License](https://choosealicense.com)
 * [Discord.py docs](https://discordpy.readthedocs.io/en/stable/)
+* [information about buttons](https://gist.github.com/lykn/bac99b06d45ff8eed34c2220d86b6bf4)
+  
