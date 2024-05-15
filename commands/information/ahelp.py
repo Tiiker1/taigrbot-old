@@ -15,4 +15,7 @@ def setup(client):
         embed.add_field(name="/mute", value="Mutes user with role muted (reguires manage role permissions)", inline=False)
         embed.add_field(name="/unmute", value="Unmutes user with removing muted role (requires manage roles permission)", inline=False)
         embed.add_field(name="/clear", value="clears defined amount of messages (requires manage messages permission)", inline=False)
+        embed.add_field(name="/buttons", value="sends out role menu", inline=False)
+        embed.add_field(name="/add_option <rolename>", value="adds role button", inline=False)
+        embed.add_field(name="/remove_option <rolename>", value="removes role button", inline=False)
         await interaction.response.send_message(embed=embed)
