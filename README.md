@@ -48,7 +48,8 @@ Current features of this bot:<br>
 
 <h4>15.05.2024</h4>
 - modified and fixed imports for help ahelp and buttons command<br>
-- added ahelp and buttons commands (ahelp is help command for adminstrative commands and buttons is rolemenucommand)<br>
+- added ahelp (ahelp is help command for adminstrative commands)<br>
+- added customizable rolemenu feature and commands for it<br>
 - relocated help command to information folder<br>
 - created inforamtion folder for information commands<br>
 
