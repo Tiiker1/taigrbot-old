@@ -46,6 +46,12 @@ Current features of this bot:<br>
 
 ## Changelog:
 
+<h4>15.05.2024</h4>
+- modified and fixed imports for help ahelp and buttons command<br>
+- added ahelp and buttons commands (ahelp is help command for adminstrative commands and buttons is rolemenucommand)<br>
+- relocated help command to information folder<br>
+- created inforamtion folder for information commands<br>
+
 <h4>13.05.2024</h4>
 - modified imports of moderation commands to them begin able to be in sub folder<br>
 - created moderation folder to commands for better manage of commands<br>
