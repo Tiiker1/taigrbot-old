@@ -31,13 +31,14 @@
   </ol>
 </details>
 
+<!-- ABOUT THE PROJECT -->
+## Features
+
 <br>
   features requested:<br>
   Product rewiew command
 <br>
 
-<!-- ABOUT THE PROJECT -->
-## Features
 Current features of this bot:<br>
 - clear command<br>
 - poll command<br>
