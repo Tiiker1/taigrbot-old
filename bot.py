@@ -17,7 +17,8 @@ from commands.moderation.clear import setup as setup_clear
 from commands.information import help
 from commands.information import ahelp
 
-from commands.poll import setup as setup_poll
+from commands.features.poll import setup as setup_poll
+from commands.features import review
 
 MY_GUILD = discord.Object(id=guildidhere)  # replace with your guild id
 
