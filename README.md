@@ -50,6 +50,11 @@ Current features of this bot:<br>
 
 ## Changelog:
 
+<h4>18.05.2024</h4>
+- added review command (reguries reviews channel to work)<br>
+- added imports for review command<br>
+- added features folder insider commands folder<br>
+
 <h4>15.05.2024</h4>
 - modified and fixed imports for help ahelp and buttons command<br>
 - added ahelp (ahelp is help command for adminstrative commands)<br>
