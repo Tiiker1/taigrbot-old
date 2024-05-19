@@ -34,16 +34,10 @@
 <!-- ABOUT THE PROJECT -->
 ## Features
 
-<br>
-  features requested:<br>
-  Product rewiew command
-<br>
-
 Current features of this bot:<br>
-- clear command<br>
-- poll command<br>
-- mute command<br>
-- unmute command<br>
+- utility comands<br>
+- moderation commands (under commands/moderation)<br>
+- other commands (not defined yet)
 - reporting bug and message context menu commands<br>
 - github commit output to specified channel<br>
 - welcome and leave messages which need to be configured in main code<br>
