@@ -150,12 +150,9 @@ to start this bot open command promopt in same folder as bot is and do following
 ## Things to do which was not originally on this bot
 
 - [ ] Event files to own folder
-- [ ] fix clear commmand to show amount messages it actually deleted not what you told it to delete
+- [ ] production ready version
 - [x] Github script to own scripts folder 08.05.2024
-- [ ] Add more feature
 - [x] Changelog 01.05.2024
-- [x] Poll command 30.04.2024
-
 
 <!-- LICENSE -->
 ## License
