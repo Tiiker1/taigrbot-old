@@ -47,6 +47,7 @@ Current features of this bot:<br>
 <h4>22.05.2024</h4>
 - added visitturku command<br>
 - added visitturku imports and call setup functions<br>
+- fixed visitturku command so it no longer send empty article at first and stores data littlebit better<br>
 
 <h4>18.05.2024</h4>
 - added review command (reguries reviews channel to work)<br>
