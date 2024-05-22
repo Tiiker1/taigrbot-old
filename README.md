@@ -159,7 +159,9 @@ Software provided does not come with any kind of warranty and im not resposible 
 You use this software completly under your own responsibility.<br>
 If you want to host your own version on this please do fork!<br>
 If you use this code you are required to keep your project open source.<br>
-downloading or using this code you agree this license and will follow it.
+any changes to license will apply to older versions and current and new versions.<br>
+this license needs to applied also on forks or own versions of this bot and it will need to updated if this license is updated.<br>
+downloading or using this code you agree this license and will follow it.<br>
 
 <!-- CONTACT -->
 ## Contact
