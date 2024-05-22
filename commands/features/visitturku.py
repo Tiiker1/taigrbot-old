@@ -20,17 +20,19 @@ def setup(client):
         articles = []
         for article in article_elements:
             heading_element = article.find('h2')
-            heading = heading_element.get_text(strip=True) if heading_element else 'No title available'
-            
+            if heading_element:
+                heading = heading_element.get_text(strip=True)
+            else:
+                # Skip articles with no title
+                continue
             date_element = article.find('time', class_='event-date')
-            date = date_element.get_text(strip=True) if date_element else 'No date available'
-            
+            date = date_element.get_text(strip=True) if date_element else ''
+
             link_element = article.find('a', href=True)
-            link = f"https://visitturku.fi{link_element['href']}" if link_element else 'No link available'
-            
+            link = f"https://visitturku.fi{link_element['href']}" if link_element else ''
+
             # Generate a unique identifier for the event
             unique_id = hashlib.sha256((heading + date + link).encode()).hexdigest()
-            
             article_info = f"**{heading}**\nDate: {date}\n[Read more]({link})"
             articles.append((unique_id, article_info))
         return articles
