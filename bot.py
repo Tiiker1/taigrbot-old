@@ -18,6 +18,7 @@ from commands.information import help
 from commands.information import ahelp
 
 from commands.features.poll import setup as setup_poll
+from commands.features.visitturku import setup as setup_visitturku
 from commands.features import review
 
 MY_GUILD = discord.Object(id=guildidhere)  # replace with your guild id
@@ -45,6 +46,7 @@ unmute.setup(client)
 button.setup(client)
 setup_clear(client)
 setup_poll(client)
+setup_visitturku(client)
 
 # Dictionary to store the channel IDs for each guild
 welcome_leave_channels = {
