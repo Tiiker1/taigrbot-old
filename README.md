@@ -44,6 +44,10 @@ Current features of this bot:<br>
 
 ## Changelog:
 
+<h4>22.05.2024</h4>
+- added visitturku command<br>
+- added visitturku imports and call setup functions<br>
+
 <h4>18.05.2024</h4>
 - added review command (reguries reviews channel to work)<br>
 - added imports for review command<br>
