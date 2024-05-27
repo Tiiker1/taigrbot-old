@@ -44,6 +44,12 @@ Current features of this bot:<br>
 
 ## Changelog:
 
+<h4>27.05.2024</h4>
+- relocated json files to jsondata and it will store data there from various commands now<br>
+- modified report_contextmenu command so it stores its data to json file and has now also feature to set reported messages channel per guild<br>
+  with command /setlogchannel channel_name_here<br>
+- modified codes so that instead of commit_data folder all json files go to jsondata folder<br>
+
 <h4>22.05.2024</h4>
 - added visitturku command<br>
 - added visitturku imports and call setup functions<br>
