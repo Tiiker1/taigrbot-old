@@ -10,12 +10,30 @@ def setup(client):
             await interaction.response.send_message("You don't have permission to use this command.")
             return
 
-        embed = discord.Embed(title="Adminstrative bot commands")
-        embed.add_field(name="/button", value="creates role menu (for now only avaible thru Tiiker1)", inline=False)
-        embed.add_field(name="/mute", value="Mutes user with role muted (reguires manage role permissions)", inline=False)
-        embed.add_field(name="/unmute", value="Unmutes user with removing muted role (requires manage roles permission)", inline=False)
-        embed.add_field(name="/clear", value="clears defined amount of messages (requires manage messages permission)", inline=False)
-        embed.add_field(name="/buttons", value="sends out role menu", inline=False)
-        embed.add_field(name="/add_option <rolename>", value="adds role button", inline=False)
-        embed.add_field(name="/remove_option <rolename>", value="removes role button", inline=False)
+        # Create an empty dictionary to store commands grouped by category
+        command_categories = {
+            "Moderation": [
+                ("/mute", "Mutes user with role muted (requires manage roles permission)"),
+                ("/unmute", "Unmutes user with removing muted role (requires manage roles permission)")
+            ],
+            "Role Management": [
+                ("/buttons", "Sends out role menu"),
+                ("/add_option <rolename>", "Adds role button"),
+                ("/remove_option <rolename>", "Removes role button")
+            ],
+            "Utility": [
+                ("/clear", "Clears defined amount of messages (requires manage messages permission)")
+            ],
+            "Contextmenu commands": [
+                ("/setlogchannel <channel>", "sets where reported messages goes. usually mods etc channel")
+            ]
+        }
+
+        # Create the embed and add fields for each category
+        embed = discord.Embed(title="Adminstrative bot commands", color=discord.Color.blue())
+
+        for category, commands in command_categories.items():
+            command_list = "\n".join([f"`{command}` - {description}" for command, description in commands])
+            embed.add_field(name=category, value=command_list, inline=False)
+
         await interaction.response.send_message(embed=embed)
