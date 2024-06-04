@@ -44,6 +44,14 @@ Current features of this bot:<br>
 
 ## Changelog:
 
+<h4>04.06.2024</h4>
+- added xp system with leaderboard and xp command<br>
+- added xp system imports and setupcall functions<br>
+- modified MyClient class to work with xpsystem<br>
+- modified on_message event to work with xpsystem<br>
+- made so that xp system uses database in databases folder which has per guild information<br>
+- modified help command to have new commands and better looking<br>
+
 <h4>27.05.2024</h4>
 - relocated json files to jsondata and it will store data there from various commands now<br>
 - modified report_contextmenu command so it stores its data to json file and has now also feature to set reported messages channel per guild<br>
