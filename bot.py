@@ -4,8 +4,10 @@ from discord.ext import commands
 from discord import app_commands
 import pytz
 import asyncio
+
 from scripts.github import fetch_recent_commits, load_commit_data, save_commit_data, create_commit_embed
 from scripts.github import check_commits_and_send_message
+from scripts.xp_database import XPDatabase
 
 from commands.moderation import button
 from commands.moderation import bug_contextmenu
@@ -17,6 +19,9 @@ from commands.moderation.clear import setup as setup_clear
 from commands.information import help
 from commands.information import ahelp
 
+from commands.xpsystem import xp
+from commands.xpsystem import leaderboard
+
 from commands.features.poll import setup as setup_poll
 from commands.information.visitturku import setup as setup_visitturku
 from commands.features import review
@@ -27,11 +32,11 @@ class MyClient(discord.Client):
     def __init__(self, *, intents: discord.Intents):
         super().__init__(intents=intents)
         self.tree = app_commands.CommandTree(self)
+        self.xp_database = XPDatabase()
 
     async def setup_hook(self):
         self.tree.copy_global_to(guild=MY_GUILD)
         await self.tree.sync(guild=MY_GUILD)
-
 
 intents = discord.Intents.default()
 client = MyClient(intents=intents)
@@ -47,6 +52,8 @@ button.setup(client)
 setup_clear(client)
 setup_poll(client)
 setup_visitturku(client)
+xp.setup(client)
+leaderboard.setup(client)
 
 # Dictionary to store the channel IDs for each guild
 welcome_leave_channels = {
@@ -76,6 +83,17 @@ async def on_member_remove(member):
         channel = client.get_channel(channel_id)
         if channel:
             await channel.send(f"Goodbye {member.mention}!")
+
+@client.event
+async def on_message(message):
+    if message.author.bot:
+        return
+
+    new_level = client.xp_database.add_xp(message.guild.id, message.author.id, 10)  # Award 10 XP for each message
+    if new_level:
+        await message.channel.send(f"Congratulations {message.author.mention}, you've leveled up to level {new_level}!")
+    await client.process_commands(message)
+
             
 async def schedule_commit_check(client):
     while True:
