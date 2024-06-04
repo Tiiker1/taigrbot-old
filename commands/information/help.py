@@ -1,12 +1,27 @@
 import discord
 from discord.ext import commands
 
-def setup(client):
+COMMANDS = {
+    "General": {
+        "/help": "Shows all available commands",
+        "/ahelp": "Shows available administrative commands"
+    },
+    "XP System": {
+        "/xp": "Shows how much XP you or another user has",
+        "/leaderboard": "Shows the leaderboard"
+    },
+    "Utilities": {
+        "/poll": "Creates a poll",
+        "/review": "Creates a product review with assisted fields",
+        "/visitturku": "Sends events from visitturku.fi"
+    }
+}
+
+def setup(client: commands.Bot):
     @client.tree.command(name='help')
     async def help_command(interaction: discord.Interaction):
-        embed = discord.Embed(title="Bot Commands")
-        embed.add_field(name="/help", value="Shows all avaible commands", inline=False)
-        embed.add_field(name="/poll", value="Creates poll", inline=False)
-        embed.add_field(name="/review", value="creates product review with assisted fields", inline=False)
-        embed.add_field(name="/visitturku", value="sends events from visitturku.fi", inline=False)
+        embed = discord.Embed(title="Bot Commands", color=discord.Color.blurple())
+        for category, cmds in COMMANDS.items():
+            cmd_list = "\n".join([f"`{cmd}` - {desc}" for cmd, desc in cmds.items()])
+            embed.add_field(name=category, value=cmd_list, inline=False)
         await interaction.response.send_message(embed=embed)
