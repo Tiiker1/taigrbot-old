@@ -1,163 +1,107 @@
 import discord
 from discord.ext import commands
-import asyncio
-import json
 import os
+import sqlite3
 
-# Directory to save custom_options.json
-DATA_DIR = "jsondata"
+# Ensure the databases folder exists
+if not os.path.exists("databases"):
+    os.makedirs("databases")
 
-# File path for custom_options.json
-CUSTOM_OPTIONS_FILE = os.path.join(DATA_DIR, "custom_options.json")
+def init_database():
+    conn = sqlite3.connect("databases/roledata.db")
+    c = conn.cursor()
 
-# Function to save custom options to JSON file
-def save_custom_options():
-    with open(CUSTOM_OPTIONS_FILE, "w") as file:
-        json.dump(custom_options, file)
+    c.execute('''CREATE TABLE IF NOT EXISTS options
+                 (guild_id TEXT, option TEXT)''')
+    conn.commit()
 
-# Function to load custom options from JSON file
-def load_custom_options():
-    global custom_options
-    if os.path.exists(CUSTOM_OPTIONS_FILE):
-        with open(CUSTOM_OPTIONS_FILE, "r") as file:
-            custom_options = json.load(file)
-    else:
-        custom_options = {}
+    conn.close()
+
+def add_option_to_database(guild_id, option):
+    conn = sqlite3.connect("databases/roledata.db")
+    c = conn.cursor()
+
+    c.execute("INSERT INTO options (guild_id, option) VALUES (?, ?)", (guild_id, option))
+    conn.commit()
+
+    conn.close()
+
+def remove_option_from_database(guild_id, option):
+    conn = sqlite3.connect("databases/roledata.db")
+    c = conn.cursor()
+
+    c.execute("DELETE FROM options WHERE guild_id=? AND option=?", (guild_id, option))
+    conn.commit()
+
+    conn.close()
+
+def get_options_from_database(guild_id):
+    conn = sqlite3.connect("databases/roledata.db")
+    c = conn.cursor()
+
+    c.execute("SELECT option FROM options WHERE guild_id=?", (guild_id,))
+    options = [row[0] for row in c.fetchall()]
+
+    conn.close()
+
+    return options
+
+class RoleMenuView(discord.ui.View):
+    def __init__(self, options):
+        super().__init__(timeout=None)  # Persistent view
+        for option in options:
+            button = discord.ui.Button(style=discord.ButtonStyle.primary, label=option, custom_id=f"{option.lower()}_button")
+            button.callback = self.create_callback(option)
+            self.add_item(button)
+
+    def create_callback(self, role_name):
+        async def callback(interaction: discord.Interaction):
+            guild = interaction.guild
+            role = discord.utils.get(guild.roles, name=role_name)
+            if not role:
+                await interaction.response.send_message(f"Role '{role_name}' not found.", ephemeral=True)
+                return
+
+            if role in interaction.user.roles:
+                await interaction.user.remove_roles(role)
+                await interaction.response.send_message(f"Role '{role_name}' removed.", ephemeral=True)
+            else:
+                await interaction.user.add_roles(role)
+                await interaction.response.send_message(f"Role '{role_name}' added.", ephemeral=True)
+        
+        return callback
 
 def setup(client):
-
-    async def toggle_role(member: discord.Member, role_name: str):
-        print(f"Attempting to toggle role '{role_name}'")
-        role = discord.utils.get(member.guild.roles, name=role_name)
-        if role:
-            print(f"Role '{role_name}' found")
-            if role in member.roles:
-                print(f"Removing role '{role_name}'")
-                await member.remove_roles(role)
-                return f"Role '{role_name}' removed successfully!"
-            else:
-                print(f"Adding role '{role_name}'")
-                await member.add_roles(role)
-                return f"Role '{role_name}' added successfully!"
-        else:
-            print(f"Role '{role_name}' not found in the server!")
-            return f"Role '{role_name}' not found in the server!"
-
-    # Call the function to load custom options
-    load_custom_options()
-
-    @client.tree.command()
-    async def rolemenu(interaction: discord.Interaction):
-        # Check if the user invoking the command has the allowed user ID
-        allowed_user_id = 267240625596792833  # Replace this with the allowed user ID
-        if interaction.user.id != allowed_user_id:
-            await interaction.response.send_message("Sorry, you are not authorized to use this command.")
-            return
-
-        # Get the guild ID
-        guild_id = str(interaction.guild.id)
-
-        # Get options based on whether custom options exist or not
-        if guild_id in custom_options and custom_options[guild_id] is not None:
-            options = custom_options[guild_id]
-        else:
-            options = ["Red", "Green", "Blue"]  # Default options
-
-        # Create buttons for each option
-        rolemenu = [discord.ui.Button(style=discord.ButtonStyle.primary, label=option, custom_id=f"{option.lower()}_button") for option in options]
-
-        # Create a View and add the buttons
-        view = discord.ui.View()
-        for button in rolemenu:
-            view.add_item(button)
-
-        # Send message with the buttons
-        await interaction.response.send_message("Press button to get role:", view=view)
-
-    @client.event
-    async def on_interaction(interaction):
-        if not interaction.type == discord.InteractionType.component:
-            return
-
-        try:
-            custom_id = interaction.data.get("custom_id")
-            member = interaction.user
-
-            # Parse option name from custom ID
-            option_name = custom_id.split("_")[0].capitalize()
-
-            # Toggle the role or perform any other action based on the option
-            result = await toggle_role(member, option_name)
-            print(result)
-
-            # Acknowledge the interaction with a placeholder message
-            await interaction.response.send_message(content=result, ephemeral=True)
-
-        except Exception as e:
-            print(f"Error handling interaction: {e}")
+    init_database()
 
     @client.tree.command()
     async def addrole(interaction: discord.Interaction, option: str):
-        # Check if the user invoking the command has the allowed user ID
-        allowed_user_id = 267240625596792833  # Replace this with the allowed user ID
-        if interaction.user.id != allowed_user_id:
-            await interaction.response.send_message("Sorry, you are not authorized to use this command.")
-            return
-
-        # Get the guild ID
         guild_id = str(interaction.guild.id)
-
-        # Initialize custom options list if it's None
-        if guild_id not in custom_options or custom_options[guild_id] is None:
-            custom_options[guild_id] = []
-
-        # Add the option to custom_options dictionary
-        custom_options[guild_id].append(option)
+        add_option_to_database(guild_id, option)
         await interaction.response.send_message(f"Option '{option}' added successfully.")
-
-        save_custom_options()  # Save the changes
-        print("Custom options after addition:", custom_options)  # Added logging
 
     @client.tree.command()
     async def removerole(interaction: discord.Interaction, option: str):
-        # Check if the user invoking the command has the allowed user ID
-        allowed_user_id = 267240625596792833  # Replace this with the allowed user ID
-        if interaction.user.id != allowed_user_id:
-            await interaction.response.send_message("Sorry, you are not authorized to use this command.")
-            return
-
-        # Get the guild ID
         guild_id = str(interaction.guild.id)
-
-        # Remove the option from custom_options dictionary
-        if guild_id in custom_options and option in custom_options[guild_id]:
-            custom_options[guild_id].remove(option)
-            await interaction.response.send_message(f"Option '{option}' removed successfully.")
-
-            # If all custom options are removed, revert to default options
-            if not custom_options[guild_id]:
-                custom_options[guild_id] = None  # Set custom options to None
-                await interaction.followup.send("All custom options removed. Reverting to default options.")
-        else:
-            await interaction.response.send_message(f"Option '{option}' not found.")
-
-        save_custom_options()  # Save the changes
-        print("Custom options after removal:", custom_options)  # Added logging
+        remove_option_from_database(guild_id, option)
+        await interaction.response.send_message(f"Option '{option}' removed successfully.")
 
     @client.tree.command()
-    async def list_options(interaction: discord.Interaction):
-        # Check if the user invoking the command has the allowed user ID
-        allowed_user_id = 267240625596792833  # Replace this with the allowed user ID
-        if interaction.user.id != allowed_user_id:
-            await interaction.response.send_message("Sorry, you are not authorized to use this command.")
-            return
-
-        # Get the guild ID
+    async def listroles(interaction: discord.Interaction):
         guild_id = str(interaction.guild.id)
+        options = get_options_from_database(guild_id)
+        if not options:
+            options = ["Red", "Green", "Blue"]  # Default options
 
-        # Get custom options for the guild or use default options
-        options = custom_options.get(guild_id, ["Red", "Green", "Blue"])
-
-        # Send the list of options as a message
         options_str = "\n".join(options)
-        await interaction.response.send_message(f"Custom options for this server:\n{options_str}")
+        await interaction.response.send_message(f"Custom roles for this server:\n{options_str}")
+
+    @client.tree.command()
+    async def rolemenu(interaction: discord.Interaction):
+        guild_id = str(interaction.guild.id)
+        options = get_options_from_database(guild_id)
+        if not options:
+            options = ["Red", "Green", "Blue"]  # Default options
+
+        view = RoleMenuView(options)
+        await interaction.response.send_message("Press a button to get the role:", view=view)
