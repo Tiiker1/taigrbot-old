@@ -9,7 +9,7 @@ from scripts.github import fetch_recent_commits, load_commit_data, save_commit_d
 from scripts.github import check_commits_and_send_message
 from scripts.xp_database import XPDatabase
 
-from commands.moderation import button
+from commands.moderation import rolemenu
 from commands.moderation import bug_contextmenu
 from commands.moderation import report_contextmenu
 from commands.moderation import mute
@@ -47,7 +47,7 @@ help.setup(client)
 ahelp.setup(client)
 mute.setup(client)
 unmute.setup(client)
-button.setup(client)
+rolemenu.setup(client)
 setup_clear(client)
 setup_poll(client)
 xp.setup(client)
