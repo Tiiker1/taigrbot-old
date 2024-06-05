@@ -44,6 +44,14 @@ Current features of this bot:<br>
 
 ## Changelog:
 
+<h4>05.06.2024</h4>
+- modified buttons command with following changes:<br>
+- rename for rolemenu command in file and usage<br>
+- rename for add_option to addrole<br>
+- rename for remove_option to removerole<br>
+- 
+- started developing frontend to be more clear and more usable for end users
+
 <h4>04.06.2024</h4>
 - added xp system with leaderboard and xp command<br>
 - added xp system imports and setupcall functions<br>
