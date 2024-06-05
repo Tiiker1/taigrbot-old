@@ -23,7 +23,6 @@ from commands.xpsystem import xp
 from commands.xpsystem import leaderboard
 
 from commands.features.poll import setup as setup_poll
-from commands.information.visitturku import setup as setup_visitturku
 from commands.features import review
 
 MY_GUILD = discord.Object(id=guildidhere)  # replace with your guild id
@@ -51,7 +50,6 @@ unmute.setup(client)
 button.setup(client)
 setup_clear(client)
 setup_poll(client)
-setup_visitturku(client)
 xp.setup(client)
 leaderboard.setup(client)
 
