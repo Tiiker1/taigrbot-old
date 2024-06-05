@@ -5,7 +5,7 @@ import json
 import os
 
 # Directory to save custom_options.json
-DATA_DIR = "commit_data"
+DATA_DIR = "jsondata"
 
 # File path for custom_options.json
 CUSTOM_OPTIONS_FILE = os.path.join(DATA_DIR, "custom_options.json")
@@ -47,9 +47,9 @@ def setup(client):
     load_custom_options()
 
     @client.tree.command()
-    async def buttons(interaction: discord.Interaction):
+    async def rolemenu(interaction: discord.Interaction):
         # Check if the user invoking the command has the allowed user ID
-        allowed_user_id = 6546745645645645645  # Replace this with the allowed user ID
+        allowed_user_id = 267240625596792833  # Replace this with the allowed user ID
         if interaction.user.id != allowed_user_id:
             await interaction.response.send_message("Sorry, you are not authorized to use this command.")
             return
@@ -64,15 +64,15 @@ def setup(client):
             options = ["Red", "Green", "Blue"]  # Default options
 
         # Create buttons for each option
-        buttons = [discord.ui.Button(style=discord.ButtonStyle.primary, label=option, custom_id=f"{option.lower()}_button") for option in options]
+        rolemenu = [discord.ui.Button(style=discord.ButtonStyle.primary, label=option, custom_id=f"{option.lower()}_button") for option in options]
 
         # Create a View and add the buttons
         view = discord.ui.View()
-        for button in buttons:
+        for button in rolemenu:
             view.add_item(button)
 
         # Send message with the buttons
-        await interaction.response.send_message("Please select a role:", view=view)
+        await interaction.response.send_message("Press button to get role:", view=view)
 
     @client.event
     async def on_interaction(interaction):
@@ -97,9 +97,9 @@ def setup(client):
             print(f"Error handling interaction: {e}")
 
     @client.tree.command()
-    async def add_option(interaction: discord.Interaction, option: str):
+    async def addrole(interaction: discord.Interaction, option: str):
         # Check if the user invoking the command has the allowed user ID
-        allowed_user_id = 343434343434343  # Replace this with the allowed user ID
+        allowed_user_id = 267240625596792833  # Replace this with the allowed user ID
         if interaction.user.id != allowed_user_id:
             await interaction.response.send_message("Sorry, you are not authorized to use this command.")
             return
@@ -119,9 +119,9 @@ def setup(client):
         print("Custom options after addition:", custom_options)  # Added logging
 
     @client.tree.command()
-    async def remove_option(interaction: discord.Interaction, option: str):
+    async def removerole(interaction: discord.Interaction, option: str):
         # Check if the user invoking the command has the allowed user ID
-        allowed_user_id = 43434343434343  # Replace this with the allowed user ID
+        allowed_user_id = 267240625596792833  # Replace this with the allowed user ID
         if interaction.user.id != allowed_user_id:
             await interaction.response.send_message("Sorry, you are not authorized to use this command.")
             return
@@ -147,7 +147,7 @@ def setup(client):
     @client.tree.command()
     async def list_options(interaction: discord.Interaction):
         # Check if the user invoking the command has the allowed user ID
-        allowed_user_id = 343434343434343434  # Replace this with the allowed user ID
+        allowed_user_id = 267240625596792833  # Replace this with the allowed user ID
         if interaction.user.id != allowed_user_id:
             await interaction.response.send_message("Sorry, you are not authorized to use this command.")
             return
