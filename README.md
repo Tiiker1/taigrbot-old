@@ -5,42 +5,10 @@
   </p>
 </div>
 
-
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#Features">Features</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
-
 <!-- ABOUT THE PROJECT -->
 ## Features
 
-Current features of this bot:<br>
-- utility comands<br>
-- moderation commands (under commands/moderation)<br>
-- other commands (not defined yet)
-- reporting bug and message context menu commands<br>
-- github commit output to specified channel<br>
-- welcome and leave messages which need to be configured in main code<br>
+--- THIS SECTION WILL BE REMADE---
 
 ## Changelog:
 
@@ -49,7 +17,7 @@ Current features of this bot:<br>
 - rename for rolemenu command in file and usage<br>
 - rename for add_option to addrole<br>
 - rename for remove_option to removerole<br>
-- 
+- made rolemenu to use database to store data<br>
 - started developing frontend to be more clear and more usable for end users
 
 <h4>04.06.2024</h4>
