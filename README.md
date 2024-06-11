@@ -15,7 +15,8 @@
 <h4>11.06.2024</h4>
 - modified github script to use database instead of json file<br>
 - modified imports on main script to support new github script<br>
-- updated ahelp command to include changes i made to rolemenu
+- updated ahelp command to include changes i made to rolemenu<br>
+- removed visitturku command also from /help command<br>
 
 <h4>05.06.2024</h4>
 - modified buttons command with following changes:<br>
