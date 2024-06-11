@@ -23,15 +23,15 @@ def setup(client):
                 )
             ],
             "**Role Management**": [
-                ("/buttons", 
+                ("/rolemenu", 
                  "Sends out a menu with clickable buttons for users to assign themselves roles.", 
                  "Requires `Manage Roles` permission."
                 ),
-                ("/add_option <rolename>", 
+                ("/addrole <rolename>", 
                  "Adds a role button to the role menu.", 
                  "Requires `Manage Roles` permission."
                 ),
-                ("/remove_option <rolename>", 
+                ("/removerole <rolename>", 
                  "Removes a role button from the role menu.", 
                  "Requires `Manage Roles` permission."
                 )
