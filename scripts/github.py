@@ -5,42 +5,69 @@ from datetime import datetime
 import pytz
 import json
 import asyncio
+import sqlite3
 
 # Define your GitHub repository information
-GITHUB_USERNAME = 'putyourgithubusernamehere'
-REPOSITORY_NAME = 'putyourreponamehere'
+GITHUB_USERNAME = 'username'
+REPOSITORY_NAME = 'reponame'
 REPOSITORY_URL = f'https://github.com/{GITHUB_USERNAME}/{REPOSITORY_NAME}'
-COMMIT_DATA_DIR = 'commit_data'
+DATABASE_PATH = 'databases/github_data.db'
 
 # Define Helsinki timezone
 helsinki_tz = pytz.timezone('Europe/Helsinki')
 
-# Function to fetch recent commits from GitHub
-def fetch_recent_commits():
-    try:
-        response = requests.get(f'https://api.github.com/repos/{GITHUB_USERNAME}/{REPOSITORY_NAME}/commits')
-        response.raise_for_status()  # Raise an error for bad responses
-        return response.json()
-    except Exception as e:
-        print(f"Failed to fetch commits: {e}")
-        return []
+# Ensure the database directory exists
+os.makedirs('databases', exist_ok=True)
 
-# Function to load commit data from a JSON file
+# Function to initialize the SQLite database
+def init_db():
+    conn = sqlite3.connect(DATABASE_PATH)
+    cursor = conn.cursor()
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS commits (
+            sha TEXT PRIMARY KEY
+        )
+    ''')
+    conn.commit()
+    conn.close()
+
+# Function to fetch all commits from GitHub with pagination
+def fetch_all_commits():
+    commits = []
+    page = 1
+    while True:
+        try:
+            response = requests.get(
+                f'https://api.github.com/repos/{GITHUB_USERNAME}/{REPOSITORY_NAME}/commits',
+                params={'page': page, 'per_page': 100}
+            )
+            response.raise_for_status()  # Raise an error for bad responses
+            page_commits = response.json()
+            if not page_commits:
+                break
+            commits.extend(page_commits)
+            page += 1
+        except Exception as e:
+            print(f"Failed to fetch commits: {e}")
+            break
+    return commits
+
+# Function to load commit data from the SQLite database
 def load_commit_data():
-    try:
-        with open(os.path.join(COMMIT_DATA_DIR, 'commits.json'), 'r') as file:
-            return json.load(file)
-    except FileNotFoundError:
-        return []
+    conn = sqlite3.connect(DATABASE_PATH)
+    cursor = conn.cursor()
+    cursor.execute('SELECT sha FROM commits')
+    rows = cursor.fetchall()
+    conn.close()
+    return [row[0] for row in rows]
 
-# Function to save commit data to a JSON file
+# Function to save commit data to the SQLite database
 def save_commit_data(commits):
-    try:
-        os.makedirs(COMMIT_DATA_DIR, exist_ok=True)
-        with open(os.path.join(COMMIT_DATA_DIR, 'commits.json'), 'w') as file:
-            json.dump(commits, file, indent=4)
-    except Exception as e:
-        print(f"Failed to save commit data: {e}")
+    conn = sqlite3.connect(DATABASE_PATH)
+    cursor = conn.cursor()
+    cursor.executemany('INSERT OR IGNORE INTO commits (sha) VALUES (?)', [(commit,) for commit in commits])
+    conn.commit()
+    conn.close()
 
 # Function to create an embed message for a commit
 def create_commit_embed(commit):
@@ -70,7 +97,7 @@ def create_commit_embed(commit):
 async def check_commits_and_send_message(client):
     try:
         print("Fetching recent commits from GitHub...")
-        commits = fetch_recent_commits()
+        commits = fetch_all_commits()
         print("Recent commits fetched.")
 
         if not commits:
@@ -96,14 +123,16 @@ async def check_commits_and_send_message(client):
         for commit in unsent_commits:
             embed = create_commit_embed(commit)
             if embed:
-                channel_id = 12345678901 # Replace this with the actual channel ID
+                channel_id = 345345345353334543534 # Replace this with the actual channel ID
                 channel = client.get_channel(channel_id)
                 print(f"Sending message to channel: {channel_id}")
                 await channel.send(embed=embed)
                 print("Message sent successfully.")
 
         # Update the list of sent commits
-        all_commits = sent_commits + [commit['sha'] for commit in unsent_commits]
-        save_commit_data(all_commits)
+        save_commit_data([commit['sha'] for commit in unsent_commits])
     except Exception as e:
         print(f"Failed to check commits and send message: {e}")
+
+# Initialize the database
+init_db()
