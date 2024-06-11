@@ -12,7 +12,7 @@
 
 ## Changelog:
 
-<h4>05.06.2024</h4>
+<h4>11.06.2024</h4>
 - modified github script to use database instead of json file<br>
 - modified imports on main script to support new github script<br>
 
