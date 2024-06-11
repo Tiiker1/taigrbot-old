@@ -13,6 +13,10 @@
 ## Changelog:
 
 <h4>05.06.2024</h4>
+- modified github script to use database instead of json file<br>
+- modified imports on main script to support new github script<br>
+
+<h4>05.06.2024</h4>
 - modified buttons command with following changes:<br>
 - rename for rolemenu command in file and usage<br>
 - rename for add_option to addrole<br>
