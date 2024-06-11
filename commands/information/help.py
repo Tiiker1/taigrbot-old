@@ -12,8 +12,7 @@ COMMANDS = {
     },
     "Utilities": {
         "/poll": "Creates a poll",
-        "/review": "Creates a product review with assisted fields",
-        "/visitturku": "Sends events from visitturku.fi"
+        "/review": "Creates a product review with assisted fields"
     }
 }
 
