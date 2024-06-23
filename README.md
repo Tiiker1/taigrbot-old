@@ -89,21 +89,6 @@ x removed report bug and message commands from main code since they now exists o
 <h4>soon after intial commit</h4>
 - added clear command
 
-## Built With
-
-Python libraries/modules used in this project
-
-* discord.py
-* discord.ext
-* typing
-* requests
-* os
-* datetime
-* pytz
-* json
-* yarl
-
-
 <!-- GETTING STARTED -->
 ## Getting Started
 
