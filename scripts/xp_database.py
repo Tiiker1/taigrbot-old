@@ -23,6 +23,12 @@ class XPDatabase:
                     PRIMARY KEY (guild_id, user_id)
                 )
             """)
+            self.conn.execute("""
+                CREATE TABLE IF NOT EXISTS xp_system_status (
+                    guild_id TEXT PRIMARY KEY,
+                    status INTEGER
+                )
+            """)
 
     def add_xp(self, guild_id, user_id, xp):
         with self.conn:
@@ -63,3 +69,17 @@ class XPDatabase:
         cur = self.conn.cursor()
         cur.execute("SELECT user_id, xp, level FROM xp_data WHERE guild_id = ? ORDER BY xp DESC LIMIT ?", (guild_id, limit))
         return cur.fetchall()
+
+    def set_xp_system_status(self, guild_id, status):
+        with self.conn:
+            cur = self.conn.cursor()
+            cur.execute("INSERT OR REPLACE INTO xp_system_status (guild_id, status) VALUES (?, ?)", (guild_id, status))
+
+    def get_xp_system_status(self, guild_id):
+        cur = self.conn.cursor()
+        cur.execute("SELECT status FROM xp_system_status WHERE guild_id = ?", (guild_id,))
+        row = cur.fetchone()
+        if row:
+            return row[0] == 1
+        else:
+            return True  # Default to True if not set
