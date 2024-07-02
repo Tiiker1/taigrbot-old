@@ -36,6 +36,16 @@ def setup(client):
                  "Requires `Manage Roles` permission."
                 )
             ],
+            "**XP-System**": [
+                ("/xp_on", 
+                 "Turns xp system on.", 
+                 "Requires `Administrator` permission."
+                ),
+                ("/xp_off", 
+                 "Turns xp system off.", 
+                 "Requires `Administrator` permission."
+                )
+            ],
             "**Utility**": [
                 ("/clear", 
                  "Clears a defined amount of messages from the channel.", 
