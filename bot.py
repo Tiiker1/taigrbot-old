@@ -18,6 +18,7 @@ from commands.moderation.clear import setup as setup_clear
 
 from commands.information import help
 from commands.information import ahelp
+from commands.information import permissions
 
 from commands.xpsystem import xp
 from commands.xpsystem import leaderboard
@@ -45,6 +46,7 @@ report_contextmenu.setup(client)
 bug_contextmenu.setup(client)
 help.setup(client)
 ahelp.setup(client)
+permissions.setup(client)
 mute.setup(client)
 unmute.setup(client)
 rolemenu.setup(client)
