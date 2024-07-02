@@ -12,6 +12,12 @@
 
 ## Changelog:
 
+<h4>02.07.2024</h4>
+- added permissions command<br>
+- made callsetup fuction and impports to permissions command<br>
+- made xp on and off command to turn off and on xp system <br>
+- edited xp system to support new commands and it now has "xp system state on or off" also<br>
+
 <h4>11.06.2024</h4>
 - modified github script to use database instead of json file<br>
 - modified imports on main script to support new github script<br>
