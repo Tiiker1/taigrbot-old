@@ -10,3 +10,21 @@ def setup(client):
         xp = user_data["xp"]
         level = user_data["level"]
         await interaction.response.send_message(f"{user.mention if user else interaction.user.mention} has {xp} XP and is at level {level} in this server")
+
+    @client.tree.command()
+    async def xp_off(interaction: discord.Interaction):
+        if not interaction.user.guild_permissions.administrator:
+            await interaction.response.send_message("You do not have permission to use this command.", ephemeral=True)
+            return
+
+        client.xp_database.set_xp_system_status(interaction.guild_id, 0)
+        await interaction.response.send_message("XP system has been turned off.")
+
+    @client.tree.command()
+    async def xp_on(interaction: discord.Interaction):
+        if not interaction.user.guild_permissions.administrator:
+            await interaction.response.send_message("You do not have permission to use this command.", ephemeral=True)
+            return
+
+        client.xp_database.set_xp_system_status(interaction.guild_id, 1)
+        await interaction.response.send_message("XP system has been turned on.")
