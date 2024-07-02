@@ -86,13 +86,13 @@ async def on_member_remove(member):
 async def on_message(message):
     if message.author.bot:
         return
-
-    new_level = client.xp_database.add_xp(message.guild.id, message.author.id, 10)  # Award 10 XP for each message
-    if new_level:
-        await message.channel.send(f"Congratulations {message.author.mention}, you've leveled up to level {new_level}!")
-    await client.process_commands(message)
-
-            
+        
+    guild_id = message.guild.id
+    if client.xp_database.get_xp_system_status(guild_id):
+        new_level = client.xp_database.add_xp(guild_id, message.author.id, 10)  # Award 10 XP for each message
+        if new_level:
+            await message.channel.send(f"Congratulations {message.author.mention}, you've leveled up to level {new_level}!")
+        
 async def schedule_commit_check(client):
     while True:
         await asyncio.sleep(600)  # Sleep for 1 hour (3600 seconds)
