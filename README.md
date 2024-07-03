@@ -12,6 +12,9 @@
 
 ## Changelog:
 
+<h4>03.07.2024</h4>
+- fixed report to moderator context menu command<br>
+
 <h4>02.07.2024</h4>
 - added permissions command<br>
 - made callsetup fuction and impports to permissions command<br>
