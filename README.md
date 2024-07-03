@@ -14,6 +14,7 @@
 
 <h4>03.07.2024</h4>
 - fixed report to moderator context menu command<br>
+- fixed mute and unmute command to work globally in everyserver
 - made bot to register commands to every server instead of hardcoded guild id (now its more ready for production)<br>
 
 <h4>02.07.2024</h4>
