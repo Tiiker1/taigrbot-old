@@ -22,7 +22,6 @@ from commands.features.poll import setup as setup_poll
 from commands.features import review
 
 from commands.xpsystem import xp
-from commands.xpsystem import leaderboard
 
 class MyClient(discord.Client):
     def __init__(self, *, intents: discord.Intents):
@@ -53,7 +52,6 @@ setup_poll(client)
 review.setup(client)
 
 xp.setup(client)
-leaderboard.setup(client)
 
 @client.event
 async def on_ready():
