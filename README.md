@@ -12,6 +12,11 @@
 
 ## Changelog:
 
+<h4>10.07.2024</h4>
+- fixed rolemenu -> now has permission requirements of manage roles.<br>
+- fixed xp system to have working xp_check command<br>
+- fixed help command to have all commands
+
 <h4>03.07.2024</h4>
 - fixed report to moderator context menu command<br>
 - fixed mute and unmute command to work globally in everyserver<br>
