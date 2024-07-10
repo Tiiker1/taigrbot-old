@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from discord import app_commands
 import os
 import sqlite3
 
@@ -74,19 +75,30 @@ class RoleMenuView(discord.ui.View):
 def setup(client):
     init_database()
 
+    # Function to check if the user has the Manage Roles permission
+    def has_manage_roles_permission(interaction: discord.Interaction) -> bool:
+        return interaction.user.guild_permissions.manage_roles
+
+    # Decorator for the check
+    def manage_roles_required():
+        return app_commands.check(has_manage_roles_permission)
+
     @client.tree.command()
+    @manage_roles_required()
     async def addrole(interaction: discord.Interaction, option: str):
         guild_id = str(interaction.guild.id)
         add_option_to_database(guild_id, option)
         await interaction.response.send_message(f"Option '{option}' added successfully.")
 
     @client.tree.command()
+    @manage_roles_required()
     async def removerole(interaction: discord.Interaction, option: str):
         guild_id = str(interaction.guild.id)
         remove_option_from_database(guild_id, option)
         await interaction.response.send_message(f"Option '{option}' removed successfully.")
 
     @client.tree.command()
+    @manage_roles_required()
     async def listroles(interaction: discord.Interaction):
         guild_id = str(interaction.guild.id)
         options = get_options_from_database(guild_id)
@@ -97,6 +109,7 @@ def setup(client):
         await interaction.response.send_message(f"Custom roles for this server:\n{options_str}")
 
     @client.tree.command()
+    @manage_roles_required()
     async def rolemenu(interaction: discord.Interaction):
         guild_id = str(interaction.guild.id)
         options = get_options_from_database(guild_id)
@@ -105,3 +118,11 @@ def setup(client):
 
         view = RoleMenuView(options)
         await interaction.response.send_message("Press a button to get the role:", view=view)
+
+    # Error handler for permission check failures
+    @client.tree.error
+    async def on_app_command_error(interaction: discord.Interaction, error: app_commands.AppCommandError):
+        if isinstance(error, app_commands.CheckFailure):
+            await interaction.response.send_message("You do not have the necessary permissions to use this command.", ephemeral=True)
+        else:
+            await interaction.response.send_message("An error occurred while processing the command.", ephemeral=True)
