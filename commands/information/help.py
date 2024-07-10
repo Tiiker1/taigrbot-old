@@ -7,7 +7,7 @@ COMMANDS = {
         "/ahelp": "Shows available administrative commands"
     },
     "XP System": {
-        "/xp": "Shows how much XP you or another user has",
+        "/xp_check": "Shows how much XP you or another user has",
         "/leaderboard": "Shows the leaderboard"
     },
     "Utilities": {
