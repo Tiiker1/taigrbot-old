@@ -2,14 +2,19 @@ import discord
 from discord.ext import commands
 
 def setup(client):
-    @client.tree.command(name='xp')
-    async def xp_command(interaction: discord.Interaction, user: discord.User = None):
+    # Check if XP system is enabled
+    async def is_xp_system_enabled(guild_id):
+        status = client.xp_database.get_xp_system_status(guild_id)
+        return status == 1
+
+    # Command to check XP status
+    @client.tree.command()
+    async def xp_status(interaction: discord.Interaction):
         guild_id = interaction.guild.id
-        user_id = user.id if user else interaction.user.id
-        user_data = client.xp_database.get_user_data(guild_id, user_id)
-        xp = user_data["xp"]
-        level = user_data["level"]
-        await interaction.response.send_message(f"{user.mention if user else interaction.user.mention} has {xp} XP and is at level {level} in this server")
+        if await is_xp_system_enabled(guild_id):
+            await interaction.response.send_message("XP system is currently **enabled**.")
+        else:
+            await interaction.response.send_message("XP system is currently **disabled**.")
 
     # Command to turn off XP system
     @client.tree.command()
@@ -31,9 +36,24 @@ def setup(client):
         client.xp_database.set_xp_system_status(interaction.guild_id, 1)
         await interaction.response.send_message("XP system has been turned on.")
 
+    # Command to check user's XP
+    @client.tree.command()
+    async def xp_check(interaction: discord.Interaction):
+        user_id = interaction.user.id
+        guild_id = interaction.guild.id
+        user_data = client.xp_database.get_user_data(guild_id, user_id)
+        xp = user_data["xp"]
+        level = user_data["level"]
+        await interaction.response.send_message(f"You have {xp} XP and are at level {level} in this server.")
+
+    # Command to show leaderboard
     @client.tree.command(name='leaderboard')
     async def leaderboard_command(interaction: discord.Interaction):
         guild_id = interaction.guild.id
+        if not await is_xp_system_enabled(guild_id):
+            await interaction.response.send_message("The XP system is currently disabled.", ephemeral=True)
+            return
+
         leaderboard = client.xp_database.get_leaderboard(guild_id)
 
         # Create a new embed with a title and color
@@ -75,3 +95,4 @@ def setup(client):
 
         # Send the embed as a response
         await interaction.response.send_message(embed=embed)
+
