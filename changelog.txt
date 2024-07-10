@@ -1,0 +1,77 @@
+10.07.2024
+- fixed rolemenu -> now has permission requirements of manage roles.
+- fixed xp system to have working xp_check command
+- fixed help command to have all commands
+03.07.2024
+- fixed report to moderator context menu command
+- fixed mute and unmute command to work globally in everyserver
+- made bot to register commands to every server instead of hardcoded guild id (now its more ready for production)
+02.07.2024
+- added permissions command
+- made callsetup fuction and impports to permissions command
+- made xp on and off command to turn off and on xp system
+- edited xp system to support new commands and it now has "xp system state on or off" also
+11.06.2024
+- modified github script to use database instead of json file
+- modified imports on main script to support new github script
+- updated ahelp command to include changes i made to rolemenu
+- removed visitturku command also from /help command
+05.06.2024
+- modified buttons command with following changes:
+- rename for rolemenu command in file and usage
+- rename for add_option to addrole
+- rename for remove_option to removerole
+- made rolemenu to use database to store data
+- started developing frontend to be more clear and more usable for end users
+04.06.2024
+- added xp system with leaderboard and xp command
+- added xp system imports and setupcall functions
+- modified MyClient class to work with xpsystem
+- modified on_message event to work with xpsystem
+- made so that xp system uses database in databases folder which has per guild information
+- modified help command to have new commands and better looking
+27.05.2024
+- relocated json files to jsondata and it will store data there from various commands now
+- modified report_contextmenu command so it stores its data to json file and has now also feature to set reported messages channel per guild
+with command /setlogchannel channel_name_here
+- modified codes so that instead of commit_data folder all json files go to jsondata folder
+22.05.2024
+- added visitturku command
+- added visitturku imports and call setup functions
+- fixed visitturku command so it no longer send empty article at first and stores data littlebit better
+18.05.2024
+- added review command (reguries reviews channel to work)
+- added imports for review command
+- added features folder insider commands folder
+15.05.2024
+- modified and fixed imports for help ahelp and buttons command
+- added ahelp (ahelp is help command for adminstrative commands)
+- added customizable rolemenu feature and commands for it
+- relocated help command to information folder
+- created inforamtion folder for information commands
+13.05.2024
+- modified imports of moderation commands to them begin able to be in sub folder
+- created moderation folder to commands for better manage of commands
+- relocated moderation commands to moderation subfolder
+- added custom status for bot (not yet commited)
+08.05.2024
+- added imports and setup call functions for mute, unmute and help commands
+- added mute and unmute commands to help command
+- added task to check every 10minutes for new commits
+- added seperate github.py script to scripts folder to send messages about github commits automaticly on dev channel
+- removed github script from main file
+07.05.2024
+- added mute command
+- added unmute command
+- added help command
+06.05.2024
+- added leave and welcome messages for configured guild and channels
+x removed report bug and message commands from main code since they now exists on commands folder in seperated files.
+30.04.2024
+- better readme file
+- removed poll command since its replaced by more advanced poll command
+- added Enhanced poll command
+29.04.2024
+- added context menu commands (report bugs and report message to moderators)
+soon after intial commit
+- added clear command
